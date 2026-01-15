@@ -201,7 +201,8 @@ unique_ptr<UniDx::Scene> MainGame::CreateScene()
 
     auto scoreMesh = make_unique<TextMesh>();
     scoreMesh->font = font;
-    scoreMesh->text = u8"0";
+    scoreMesh->text = u8"スコア 0";
+    scoreMesh->color = Color::yellow;
     scoreTextMesh = scoreMesh.get();
 
     auto scoreTextObj = make_unique<GameObject>(u8"スコア", scoreMesh);
@@ -245,5 +246,5 @@ MainGame::~MainGame()
 void MainGame::AddScore(int n)
 {
     score += n;
-    scoreTextMesh->text = ToString(score);
+    scoreTextMesh->text = u8"スコア " + ToString(score);
 }

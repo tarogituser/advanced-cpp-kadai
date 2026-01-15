@@ -156,4 +156,9 @@
       <Filter>リソース ファイル</Filter>
     </CopyFileToFolders>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\resource\My Character.vrm">
+      <Filter>リソース ファイル</Filter>
+    </None>
+  </ItemGroup>
 </Project>
