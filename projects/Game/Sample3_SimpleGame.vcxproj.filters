@@ -55,6 +55,9 @@
     <ClInclude Include="include\MainGame.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="include\Coin.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CameraController.cpp">
@@ -78,6 +81,9 @@
     <ClCompile Include="src\MainGame.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="src\Coin.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\resource\AlbedoShadeSpec.hlsl">
@@ -93,9 +99,6 @@
       <Filter>リソース ファイル</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="..\resource\map_data.txt">
-      <Filter>リソース ファイル</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\resource\mini_emma.glb">
       <Filter>リソース ファイル</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="..\resource\Sprite.hlsl">
@@ -155,9 +158,12 @@
     <CopyFileToFolders Include="..\resource\space_frigate.png">
       <Filter>リソース ファイル</Filter>
     </CopyFileToFolders>
+    <CopyFileToFolders Include="..\resource\My Character.vrm">
+      <Filter>リソース ファイル</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\resource\My Character.vrm">
+    <None Include="..\resource\mini_emma.glb">
       <Filter>リソース ファイル</Filter>
     </None>
   </ItemGroup>

@@ -17,6 +17,7 @@
 #include "Player.h"
 #include "MapData.h"
 #include "LightController.h"
+#include "Coin.h"
 
 #include <thread>
 #include "MainGame.h"
@@ -93,7 +94,8 @@ void MainGame::createMap()
                 auto coin = make_unique<GameObject>(u8"Coin",
                     make_unique<GltfModel>(),
                     make_unique<Rigidbody>(),
-                    make_unique<SphereCollider>(Vector3(0, -0.1f, 0), 0.4f)
+                    make_unique<SphereCollider>(Vector3(0, -0.1f, 0), 0.4f),
+                    make_unique<Coin>()
                 );
                 auto model = coin->GetComponent<GltfModel>(true);
                 model->Load<VertexPN>(
@@ -109,6 +111,8 @@ void MainGame::createMap()
 
                 // コインの親をマップにする
                 Transform::SetParent(move(coin), map->transform);
+
+                coinObjects.push_back(coin.get());
             }
             break;
 
@@ -154,11 +158,11 @@ unique_ptr<UniDx::Scene> MainGame::CreateScene()
         );
     auto model = playerObj->GetComponent<GltfModel>(true);
     model->Load<VertexSkin>(
-        u8"resource/mini_emma.glb",
+        u8"resource/My Character.vrm",
         u8"resource/SkinBasic.hlsl");
     playerObj->transform->localPosition = Vector3(0, -1, 0);
     playerObj->transform->localRotation = Quaternion::Euler(0, 180, 0);
-
+  
     // -- カメラ --
     auto cameraBehaviour = make_unique<CameraController>();
     cameraBehaviour->player = playerObj->GetComponent<Player>(true);
@@ -208,6 +212,16 @@ unique_ptr<UniDx::Scene> MainGame::CreateScene()
     auto scoreTextObj = make_unique<GameObject>(u8"スコア", scoreMesh);
     scoreTextObj->transform->localPosition = Vector3(480, 20, 0);
 
+    auto gameClearMesh = make_unique<TextMesh>();
+    gameClearMesh->font = font;
+    gameClearMesh->text = u8"";
+    gameClearMesh->color = Color::red;
+    gameClearTextMesh = gameClearMesh.get();
+
+    auto gameClearTextObj = make_unique<GameObject>(u8"ゲームクリア", gameClearMesh);
+    gameClearTextObj->transform->localPosition = Vector3(500, 500, 0);
+    gameClearTextObj->transform->localScale = Vector3(2.5f, 2.5f, 2.5f);
+      
     auto canvas = make_unique<Canvas>();
     canvas->LoadDefaultMaterial(u8"resource");
 
@@ -232,7 +246,8 @@ unique_ptr<UniDx::Scene> MainGame::CreateScene()
         make_unique<GameObject>(u8"UI",
             move(canvas),
             move(textObj),
-            move(scoreTextObj)
+            move(scoreTextObj),
+            move(gameClearTextObj)
         )
     );
 }
@@ -247,4 +262,10 @@ void MainGame::AddScore(int n)
 {
     score += n;
     scoreTextMesh->text = u8"スコア " + ToString(score);
+}
+
+void MainGame::CheckGameClear()
+{
+    coinObjects.erase(remove_if(coinObjects.begin(), coinObjects.end(), [](GameObject* c) { return c == nullptr; }));
+    if (coinObjects.size() == 0) gameClearTextMesh->text = u8"Game Clear";
 }

@@ -1,0 +1,10 @@
+diff a/UniDx/include/UniDx/SkinnedMeshRenderer.h b/UniDx/include/UniDx/SkinnedMeshRenderer.h	(rejected hunks)
+@@ -39,7 +39,7 @@ struct VertexSkin : public VertexPN
+ };
+ 
+ 
+-struct SkinedSubMesh : public OwnedSubMesh
++struct SkinnedSubMesh : public OwnedSubMesh
+ {
+     std::vector<VertexSkin::Joints> jointsData;
+     std::vector<VertexSkin::Weights> weightsData;

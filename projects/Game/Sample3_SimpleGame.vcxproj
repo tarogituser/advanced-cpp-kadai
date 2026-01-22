@@ -191,6 +191,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\CameraController.h" />
+    <ClInclude Include="include\Coin.h" />
     <ClInclude Include="include\framework.h" />
     <ClInclude Include="include\LightController.h" />
     <ClInclude Include="include\main.h" />
@@ -202,6 +203,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CameraController.cpp" />
+    <ClCompile Include="src\Coin.cpp" />
     <ClCompile Include="src\CreateDefaultScene.cpp" />
     <ClCompile Include="src\LightController.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -232,11 +234,11 @@
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\resource</DestinationFolders>
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\resource</DestinationFolders>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="..\resource\mini_emma.glb">
+    <None Include="..\resource\mini_emma.glb">
       <FileType>Document</FileType>
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\resource</DestinationFolders>
       <DestinationFolders Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)\resource</DestinationFolders>
-    </CopyFileToFolders>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\resource\map_data.txt">
@@ -300,7 +302,9 @@
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\resource\My Character.vrm" />
+    <CopyFileToFolders Include="..\resource\My Character.vrm">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

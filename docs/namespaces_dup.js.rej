@@ -1,0 +1,8 @@
+diff a/docs/namespaces_dup.js b/docs/namespaces_dup.js	(rejected hunks)
+@@ -1,5 +1,4 @@
+ var namespaces_dup =
+ [
+-    [ "std", "namespacestd.html", "namespacestd" ],
+     [ "UniDx", "namespace_uni_dx.html", "namespace_uni_dx" ]
+ ];
+\ No newline at end of file
